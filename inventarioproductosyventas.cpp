@@ -29,6 +29,18 @@ void registrarProducto(){
     cout<<endl;
     cout<<"Producto registrado"<<endl;
 }
+void listarProductos(){
+    if(cantidadProductos==0){
+        cout<<"No hay productos registrados."<<endl;
+        return;
+    }
+    for(int i = 0; i < cantidadProductos; i++){
+    	cout<<endl;
+        cout<<"Producto "<< i + 1 <<": "<<productos[i].nombre <<endl;
+        cout<<"------------------------"<<endl;
+        cout<<endl;
+    }
+}
 int main(){
     char opcion;
     do{
@@ -48,6 +60,9 @@ int main(){
         switch (opcion){
             case 'A':
                 registrarProducto();
+                break;
+            case 'B':
+                listarProductos();
                 break;
             case 'S':
                 cout<<"Saliendo...."<<endl;

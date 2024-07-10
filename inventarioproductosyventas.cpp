@@ -142,6 +142,13 @@ void listarVentas() {
         cout << "------------------------" << endl;
     }
 }
+void calcularTotalVentas() {
+    float totalVentas = 0;
+    for (int i = 0; i < cantidadVentas; i++) {
+        totalVentas+= ventas[i].precioTotal;
+    }
+    cout << "Total de ventas realizadas: " << totalVentas << endl;
+}
 int main(){
     char opcion;
     do{
@@ -179,6 +186,9 @@ int main(){
                 break;
             case 'G':
                 listarVentas();
+                break;
+            case 'H':
+                calcularTotalVentas();
                 break;
             case 'S':
                 cout<<"Saliendo...."<<endl;

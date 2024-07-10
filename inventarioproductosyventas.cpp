@@ -122,11 +122,26 @@ void registrarVenta() {
         return;
     }
     nuevaVenta.precioTotal = precioProducto * nuevaVenta.cantidad;
+    nuevaVenta.idVenta = cantidadVentas + 1;
     ventas[cantidadVentas] = nuevaVenta;
     cantidadVentas++;
     cout << "Venta registrada" << endl;
 }
-
+void listarVentas() {
+    if (cantidadVentas == 0) {
+     	cout<<endl;   	
+        cout << "No hay ventas registradas." << endl;
+        return;
+    }
+    cout << "Listado de ventas:" << endl;
+    for (int i = 0; i < cantidadVentas; i++) {
+        cout << "Venta " << ventas[i].idVenta << ":" << endl;
+        cout << "Producto: " << ventas[i].producto << endl;
+        cout << "Cantidad: " << ventas[i].cantidad << endl;
+        cout << "Precio total: " << ventas[i].precioTotal << endl;
+        cout << "------------------------" << endl;
+    }
+}
 int main(){
     char opcion;
     do{
@@ -161,6 +176,9 @@ int main(){
                 break;
             case 'F':
                 registrarVenta();
+                break;
+            case 'G':
+                listarVentas();
                 break;
             case 'S':
                 cout<<"Saliendo...."<<endl;

@@ -102,6 +102,31 @@ void eliminarProducto() {
         cout << "Producto no encontrado." << endl;
     }
 }
+void registrarVenta() {
+    Venta nuevaVenta;
+    cout << "Ingrese el nombre del producto vendido: ";
+    cin.ignore();
+    getline(cin, nuevaVenta.producto);
+    cout << "Ingrese la cantidad vendida: ";
+    cin >> nuevaVenta.cantidad;
+    float precioProducto = 0;
+    for (int i = 0; i < cantidadProductos; i++) {
+        if (productos[i].nombre == nuevaVenta.producto) {
+            precioProducto = productos[i].precio;
+            break;
+        }
+    }
+    if (precioProducto == 0) {
+    	cout<<endl;
+        cout << "Producto no encontrado." << endl;
+        return;
+    }
+    nuevaVenta.precioTotal = precioProducto * nuevaVenta.cantidad;
+    ventas[cantidadVentas] = nuevaVenta;
+    cantidadVentas++;
+    cout << "Venta registrada" << endl;
+}
+
 int main(){
     char opcion;
     do{
@@ -133,6 +158,9 @@ int main(){
                 break;
             case 'E':
                 eliminarProducto();
+                break;
+            case 'F':
+                registrarVenta();
                 break;
             case 'S':
                 cout<<"Saliendo...."<<endl;

@@ -31,6 +31,7 @@ void registrarProducto(){
 }
 void listarProductos(){
     if(cantidadProductos==0){
+    	cout<<endl;
         cout<<"No hay productos registrados."<<endl;
         return;
     }
@@ -68,12 +69,36 @@ void actualizarProducto(){
         if (productos[i].nombre == nombreActualizar) {
             cout << "Ingrese el nuevo precio del producto: ";
             cin >> productos[i].precio;
+            cout<<endl;
             cout << "Producto actualizado con éxito!" << endl;
             encontrado = true;
             break;
         }
     }
     if (!encontrado) {
+        cout << "Producto no encontrado." << endl;
+    }
+}
+void eliminarProducto() {
+    string nombreEliminar;
+    cout << "Ingrese el nombre del producto a eliminar: ";
+    cin.ignore();
+	getline(cin, nombreEliminar);
+    bool encontrado = false;
+    for (int i = 0; i < cantidadProductos; i++) {
+        if (productos[i].nombre == nombreEliminar) {
+            for (int j = i; j < cantidadProductos - 1; j++) {
+                productos[j] = productos[j + 1];
+            }
+            cantidadProductos--;
+            cout<<endl;
+            cout << "Producto eliminado" << endl;
+            encontrado = true;
+            break;
+        }
+    }
+    if (!encontrado) {
+    	cout<<endl;
         cout << "Producto no encontrado." << endl;
     }
 }
@@ -105,6 +130,9 @@ int main(){
                 break;
             case 'D':
                 actualizarProducto();
+                break;
+            case 'E':
+                eliminarProducto();
                 break;
             case 'S':
                 cout<<"Saliendo...."<<endl;
